@@ -26,8 +26,12 @@ class Rational(n : Int, d: Int) {
     this.numerator * other.denominator < this.denominator * other.numerator
   }
 
-  def add(other: Rational): Rational = {
+  def + (other: Rational): Rational = {
     new Rational(this.numerator * other.denominator + this.denominator * other.numerator, this.denominator * other.denominator)
+  }
+
+  def * (other: Rational): Rational = {
+    new Rational(this.numerator * other.numerator, this.denominator * other.denominator)
   }
 
   private def gcd(a: Int, b: Int): Int = {

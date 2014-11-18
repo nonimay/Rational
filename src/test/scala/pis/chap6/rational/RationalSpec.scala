@@ -13,7 +13,7 @@ class RationalSpec extends FunSpec with Matchers {
       new Rational(3, 4)
     }
 
-    it ("should not allow a numerator to be 0") {
+    it("should not allow a numerator to be 0") {
       intercept[IllegalArgumentException] {
         new Rational(3, 0)
       }
@@ -22,14 +22,14 @@ class RationalSpec extends FunSpec with Matchers {
 
     it("should be able to be create an instance given just a numerator") {
       val rational = new Rational(3)
-      rational.numerator should be (3)
-      rational.denominator should be (1)
+      rational.numerator should be(3)
+      rational.denominator should be(1)
     }
 
     it("should normalise the given numerator and denominator") {
       val rational = new Rational(66, 42)
-      rational.numerator should be (11)
-      rational.denominator should be (7)
+      rational.numerator should be(11)
+      rational.denominator should be(7)
     }
 
   }
@@ -66,17 +66,37 @@ class RationalSpec extends FunSpec with Matchers {
     }
   }
 
-  describe("add") {
+  describe("+") {
     it("should add together 1/2 and 1/4 to give 3/4") {
       val a = new Rational(1, 2)
       val b = new Rational(1, 4)
-      a add b  should be(new Rational(3, 4))
+      a + b should be(new Rational(3, 4))
     }
 
     it("should add together 1/2 and 1/2 to give 1/1") {
       val a = new Rational(1, 2)
       val b = new Rational(1, 2)
-      a add b should be (new Rational(1, 1))
+      a + b should be(new Rational(1, 1))
+    }
+  }
+
+  describe("*") {
+    it("should multiply 2/3 and 1/4 to give 1/6") {
+      val a = new Rational(2, 3)
+      val b = new Rational(1, 4)
+      a * b should be(new Rational(1, 6))
+    }
+  }
+
+  describe("* and + operator precedence") {
+
+    val x = new Rational(1, 2)
+    val y = new Rational(2, 3)
+
+    it("should maintain precedence") {
+      x + x * y should be(new Rational(5, 6))
+      (x + x) * y should be(new Rational(2, 3))
+      x + (x * y) should be(new Rational(5, 6))
     }
   }
 
