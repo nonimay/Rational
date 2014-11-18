@@ -9,9 +9,29 @@ class RationalSpec extends FunSpec with Matchers {
 
   describe("Creating and instance") {
 
-    it("should require a numerator and a denominator") {
+    it("should be able to be create an instance given a numerator and a denominator") {
       new Rational(3, 4)
     }
+
+    it ("should not allow a numerator to be 0") {
+      intercept[IllegalArgumentException] {
+        new Rational(3, 0)
+      }
+
+    }
+
+    it("should be able to be create an instance given just a numerator") {
+      val rational = new Rational(3)
+      rational.numerator should be (3)
+      rational.denominator should be (1)
+    }
+
+    it("should normalise the given numerator and denominator") {
+      val rational = new Rational(66, 42)
+      rational.numerator should be (11)
+      rational.denominator should be (7)
+    }
+
   }
 
   describe("toString") {
@@ -47,16 +67,16 @@ class RationalSpec extends FunSpec with Matchers {
   }
 
   describe("add") {
-    it("should add together 1/2 and 1/4 to give 6/8") {
+    it("should add together 1/2 and 1/4 to give 3/4") {
       val a = new Rational(1, 2)
       val b = new Rational(1, 4)
-      a add b  should be(new Rational(6, 8))
+      a add b  should be(new Rational(3, 4))
     }
 
-    it("should add together 1/2 and 1/2 to give 4/4") {
+    it("should add together 1/2 and 1/2 to give 1/1") {
       val a = new Rational(1, 2)
       val b = new Rational(1, 2)
-      a add b should be (new Rational(4, 4))
+      a add b should be (new Rational(1, 1))
     }
   }
 

@@ -5,8 +5,13 @@ package pis.chap6.rational
  */
 class Rational(n : Int, d: Int) {
 
-  val numerator: Int = n
-  val denominator: Int = d
+  require(d != 0)
+
+  private val g = gcd(n.abs, d.abs)
+  val numerator: Int = n / g
+  val denominator: Int = d / g
+
+  def this(n: Int) = this(n, 1)
 
   override def toString = numerator + " / " + denominator
 
@@ -23,5 +28,9 @@ class Rational(n : Int, d: Int) {
 
   def add(other: Rational): Rational = {
     new Rational(this.numerator * other.denominator + this.denominator * other.numerator, this.denominator * other.denominator)
+  }
+
+  private def gcd(a: Int, b: Int): Int = {
+    if (b == 0) a else gcd(b, a % b)
   }
 }
