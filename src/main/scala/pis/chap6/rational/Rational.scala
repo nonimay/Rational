@@ -5,5 +5,23 @@ package pis.chap6.rational
  */
 class Rational(n : Int, d: Int) {
 
-  override def toString = n + " / " + d
+  val numerator: Int = n
+  val denominator: Int = d
+
+  override def toString = numerator + " / " + denominator
+
+  override def equals(other: Any) = {
+    other match {
+      case r: Rational => r.numerator == numerator && r.denominator == denominator
+      case _ => false
+    }
+  }
+
+  def lessThan(other: Rational): Boolean = {
+    this.numerator * other.denominator < this.denominator * other.numerator
+  }
+
+  def add(other: Rational): Rational = {
+    new Rational(this.numerator * other.denominator + this.denominator * other.numerator, this.denominator * other.denominator)
+  }
 }
