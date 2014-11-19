@@ -78,6 +78,36 @@ class RationalSpec extends FunSpec with Matchers {
       val b = new Rational(1, 2)
       a + b should be(new Rational(1, 1))
     }
+
+    it("should accept just and integer") {
+      val a = new Rational(1, 3)
+      a + 3 should be(new Rational(10,3))
+    }
+  }
+
+  describe("-") {
+    it("should take 1/4 away from 1/2 to give 1/4") {
+      val a = new Rational(1, 2)
+      val b = new Rational(1, 4)
+      a - b should be(new Rational(1, 4))
+    }
+
+    it("should take 1/4 away from 1/4 to give 0") {
+      val a = new Rational(1, 2)
+      val b = new Rational(1, 2)
+      a + b should be(new Rational(1, 1))
+    }
+
+    it("should take 1/2 away from 2/3 to give 1/6") {
+      val a = new Rational(2, 3)
+      val b = new Rational(1, 2)
+      a - b should be(new Rational(1, 6))
+    }
+
+    it("should accept just and integer") {
+      val a = new Rational(1, 3)
+      a - 3 should be(new Rational(-8,3))
+    }
   }
 
   describe("*") {
@@ -85,6 +115,24 @@ class RationalSpec extends FunSpec with Matchers {
       val a = new Rational(2, 3)
       val b = new Rational(1, 4)
       a * b should be(new Rational(1, 6))
+    }
+
+    it("should accept just and integer") {
+      val a = new Rational(1, 3)
+      a * 3 should be(new Rational(1,1))
+    }
+  }
+
+  describe("/") {
+    it("should divide 1/2 and 1/4 to give 2/1") {
+      val a = new Rational(1, 2)
+      val b = new Rational(1, 4)
+      a / b should be(new Rational(2, 1))
+    }
+
+    it("should accept just and integer") {
+      val a = new Rational(1, 3)
+      a / 2 should be(new Rational(1,6))
     }
   }
 

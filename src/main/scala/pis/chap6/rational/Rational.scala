@@ -30,8 +30,32 @@ class Rational(n : Int, d: Int) {
     new Rational(this.numerator * other.denominator + this.denominator * other.numerator, this.denominator * other.denominator)
   }
 
+  def + (i: Int): Rational = {
+    new Rational(this.numerator + this.denominator * i, this.denominator)
+  }
+
+  def - (other: Rational): Rational = {
+    new Rational(this.numerator * other.denominator - this.denominator * other.numerator, this.denominator * other.denominator)
+  }
+
+  def - (i: Int): Rational = {
+    new Rational(this.numerator - this.denominator * i, this.denominator)
+  }
+
   def * (other: Rational): Rational = {
     new Rational(this.numerator * other.numerator, this.denominator * other.denominator)
+  }
+
+  def * (i: Int): Rational = {
+    new Rational(this.numerator * i, this.denominator)
+  }
+
+  def / (other: Rational): Rational = {
+    new Rational(this.numerator * other.denominator, this.denominator * other.numerator)
+  }
+
+  def / (i: Int): Rational = {
+    new Rational(this.numerator, this.denominator * i)
   }
 
   private def gcd(a: Int, b: Int): Int = {
